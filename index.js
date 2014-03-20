@@ -1,9 +1,7 @@
 var pbkdf2 = require('crypto').pbkdf2
-  , randomBytes = require('crypto').randomBytes
-  , Q = require('q');
+  , randomBytes = require('crypto').randomBytes;
 
-exports.verify = function(password, hash) {
-  var deferred = Q.defer();
+exports.verify = function(password, hash, callback) {
   hashParts = hash.split('$');
   var iterations = hashParts[2] * 500;
   var salt = hashParts[3];
@@ -11,32 +9,33 @@ exports.verify = function(password, hash) {
   
   pbkdf2(password, salt, iterations, 24, function(error, derivedKey){
     if(error) {
-      deferred.reject(new Error(error));
+      callback(new Error(error));
     } else {
-      deferred.resolve(derivedKey.toString('hex') == hashed_password);
+      callback(null, derivedKey.toString('hex') == hashed_password);
     }
   });
-  return deferred.promise;
 }
 
-exports.crypt = function(password, cost) {
-  cost = cost || 2;
+exports.crypt = function(password, cost, callback) {
+  if (typeof(callback) !== 'function') {
+    callback = cost;
+    cost = 2;
+  }
+  
   iterations = cost * 500;
-  var deferred = Q.defer();
 
   randomBytes(18, function(error, buf) {
     if(error) {
-      deferred.reject(new Error(ex));
+      callback(new Error(error));
     } else {
       pbkdf2(password, buf.toString('base64'), iterations, 24, function(error, derivedKey){
         if(error) {
-          deferred.reject(new Error(error));
+          callback(new Error(error));
         } else {
           var hash = '$pbkdf2-256-1$' + cost + '$' + buf.toString('base64') + '$' + derivedKey.toString('hex');
-          deferred.resolve(hash);
+          callback(null, hash);
         }
       });
     }
   });
-  return deferred.promise;
 }

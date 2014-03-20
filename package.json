@@ -1,11 +1,8 @@
 {
   "name": "passwords",
   "description": "Passwords is standard and simple interface to cryptographic hashing for for secure password storage",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Jonathan Cremin <jonathan@crem.in>",
-  "dependencies": {
-    "q": "*"
-  },
   "keywords": [
     "password",
     "passwords",
