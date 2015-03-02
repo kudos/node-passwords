@@ -19,9 +19,9 @@
     "yieldable",
     "generators"
   ],
-  "repository": "git://github.com/kudos/passwords.js",
-  "bugs": "https://github.com/kudos/passwords.js/issues",
-  "homepage": "https://github.com/kudos/passwords.js",
+  "repository": "git://github.com/kudos/node-passwords",
+  "bugs": "https://github.com/kudos/node-passwords/issues",
+  "homepage": "https://github.com/kudos/node-passwords",
   "license": "MIT",
   "main": "index",
   "engines": {

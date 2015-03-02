@@ -1,6 +1,6 @@
-# Passwords.js [![Circle CI](https://circleci.com/gh/kudos/passwords.js.svg?style=svg) ](https://circleci.com/gh/kudos/passwords.js)
+# Passwords [![Circle CI](https://circleci.com/gh/kudos/node-passwords.svg?style=svg) ](https://circleci.com/gh/kudos/node-passwords)
 
-Passwords.js is a standard and simple interface to cryptographic hashing for for secure password storage.
+Passwords is a standard and simple interface to cryptographic hashing for for secure password storage.
 
 It is transparently compatible with traditional callbacks, promises and generators.
 
@@ -14,7 +14,7 @@ This is an attempt to make it easier for developers to find and use a cryptograp
 
 Just `npm install passwords`.
 
-If you want to run the tests, use `npm install passwords --dev` and then run `npm test`.
+If you want to run the tests, use `npm install passwords --development` and then run `npm test`.
 
 ## Usage
 
