@@ -7,4 +7,4 @@ node_js:
   - "iojs"
   - "iojs-v1.4.2"
 before_script:
-  - iojs -e 'new Promise(function(){}, function(){});' || node -e 'new Promise(function(){}, function(){});' || npm install bluebird
+  - iojs -e 'new Promise(function(){}, function(){});' || node -e 'new Promise(function(){}, function(){});' || npm install npm -g && npm install bluebird
