@@ -18,7 +18,7 @@ exports.verify = function(password, hash, callback) {
       
       defer.reject(err);
     } else {
-      var match = derivedKey.toString('hex') == hashed_password;
+      var match = new Buffer(derivedKey, 'binary').toString('base64') == hashed_password;
       if (callback) {
         return callback(null, match);
       }
@@ -56,7 +56,7 @@ exports.crypt = function(password, cost, callback) {
             defer.reject(new Error(err));
           } else {
             var hash = '$pbkdf2-256-1$' + cost + '$' + 
-              buf.toString('base64') + '$' + derivedKey.toString('hex');
+              buf.toString('base64') + '$' + new Buffer(derivedKey, 'binary').toString('base64');
             if (callback) {
               return callback(null, hash);
             }
