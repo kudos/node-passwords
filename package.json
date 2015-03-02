@@ -31,7 +31,6 @@
     "native-or-another": "^2.0.0"
   },
   "devDependencies": {
-    "assert": "^1.3.0",
     "mocha": "^2.1.0"
   },
   "files": [
