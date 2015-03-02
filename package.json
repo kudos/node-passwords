@@ -1,16 +1,43 @@
 {
   "name": "passwords",
   "description": "Passwords is standard and simple interface to cryptographic hashing for for secure password storage",
-  "version": "0.2.0",
-  "author": "Jonathan Cremin <jonathan@crem.in>",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jonathan Cremin",
+    "email": "jonathan@crem.in",
+    "url": "https://crem.in",
+    "twitter": "https://twitter.com/kudoz"
+  },
   "keywords": [
     "password",
     "passwords",
-    "pbkdf2"
+    "pbkdf2",
+    "callbacks",
+    "promises",
+    "bluebird",
+    "yield",
+    "yieldable",
+    "generators"
   ],
   "repository": "git://github.com/kudos/passwords.js",
+  "bugs": "https://github.com/kudos/passwords.js/issues",
+  "homepage": "https://github.com/kudos/passwords.js",
+  "license": "MIT",
   "main": "index",
   "engines": {
     "node": "*"
+  },
+  "dependencies": {
+    "native-or-another": "^2.0.0"
+  },
+  "devDependencies": {
+    "assert": "^1.3.0",
+    "mocha": "^2.1.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
   }
 }
