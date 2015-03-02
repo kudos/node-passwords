@@ -2,6 +2,8 @@ var assert = require('assert');
 
 var passwords = require('..');
 
+var hashPassword = '$pbkdf2-256-1$2$8eKAvmS5GeUBSCk65iRnBNXk$jG3zKXCXMKx3WMJQTmi56+W9BVWyIyj+';
+
 describe('passwords', function () {
   describe('using callbacks', function () {
     it('should hash a password', function () {
@@ -33,6 +35,12 @@ describe('passwords', function () {
         });
       });
     });
+
+    it('should match existing hashes', function () {
+      passwords.verify('password', hashPassword, function (err, good) {
+        assert(good);
+      });
+    });
   });
   
   describe('using promises', function () {
@@ -62,6 +70,12 @@ describe('passwords', function () {
       return passwords.crypt('password', 10).then(function (hash) {
         return passwords.verify('password', hash);
       }).then(function (good) {
+        assert(good);
+      });
+    });
+
+    it('should match existing hashes', function () {
+      passwords.verify('password', hashPassword).then(function (good) {
         assert(good);
       });
     });
