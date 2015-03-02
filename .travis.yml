@@ -15,4 +15,4 @@ matrix:
 before_install:
   - iojs -e 'new Promise(function(){}, function(){});' || node -e 'new Promise(function(){}, function(){});' || npm install npm -g && npm install bluebird
 script: 
-  - "npm test $NODE_FLAGS"
+  - npm test $NODE_FLAGS

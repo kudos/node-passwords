@@ -1,8 +1,31 @@
 "use strict";
 
 var pbkdf2 = require('crypto').pbkdf2,
-  randomBytes = require('crypto').randomBytes,
-  Deferred = require('native-or-another');
+  randomBytes = require('crypto').randomBytes;
+
+try {
+  if (!global.Promise) {
+    global.Promise = require('bluebird');
+  }
+  var Deferred = function() {
+    var deferred = {};
+    deferred.promise = new Promise(function(resolve, reject) {
+      deferred.resolve = resolve;
+      deferred.reject = reject;
+    });
+    return deferred;
+  };
+} catch(_) {
+  // ignore missing bluebird module, but try to catch people using Promises anyway.
+  var Deferred = function() {
+    var deferred = {};
+    deferred.promise = {then: function() {
+      throw new Error('Use callbacks, install bluebird or use a newer javascript runtime (io.js, node.js harmony) for promise support.');
+    }}
+    return deferred;
+  };
+}
+
 
 exports.verify = function(password, hash, callback) {
   var hashParts = hash.split('$');
@@ -28,6 +51,7 @@ exports.verify = function(password, hash, callback) {
   });
   return !!callback || defer.promise;
 };
+
 
 exports.crypt = function(password, cost, callback) {
   if (typeof(cost) === 'function') {

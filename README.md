@@ -2,7 +2,7 @@
 
 Passwords is a standard and simple interface to cryptographic hashing for secure password storage.
 
-It runs on node.js and io.js and is transparently compatible with traditional callbacks, promises and generators.
+It's compatible with node.js v0.8+ and io.js and transparently supports traditional callbacks, promises and generators (see installation). It uses the Javascript runtime's PBKDF2 implementation and has no external dependencies.
 
 There is a companion library [written in Python](/kudos/passwords) which is compatible with the PBKDF2 hashes produced by this library.
 
@@ -12,11 +12,9 @@ This is an attempt to make it easier for developers to find and use a cryptograp
 
 ## Installation
 
-Just `npm install passwords`.
+`npm install passwords`
 
-If you want to run the tests, use `npm install passwords --development` and then run `npm test`.
-
-If you're running non-harmony node.js, you'll need to `npm install bluebird` ot support promises, otherwise it will use the native `Promise` implementation.
+If you are running a non-harmony node.js, you'll need to install bluebird if you want `Promise`support, but it's not required and you can still just use callbacks.
 
 ## Usage
 
