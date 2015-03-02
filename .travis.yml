@@ -2,6 +2,9 @@ language: node_js
 matrix:
   include:
     - node_js: "0.8"
+      before_install:
+        - npm install npm -g
+        - npm install bluebird
     - node_js: "0.10"
     - node_js: "0.11"
     - node_js: "0.11"
@@ -13,6 +16,6 @@ matrix:
     - node_js: "iojs"
   fast_finish: true
 before_install:
-  - iojs -e 'new Promise(function(){}, function(){});' || node -e 'new Promise(function(){}, function(){});' || npm install npm -g && npm install bluebird
+  - iojs -e 'new Promise(function(){}, function(){});' || node $NODE_FLAGS -e 'new Promise(function(){}, function(){});' || npm install npm -g && npm install bluebird
 script: 
   - npm test $NODE_FLAGS

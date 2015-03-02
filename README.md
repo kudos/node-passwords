@@ -10,7 +10,7 @@ There is a companion library [written in Python](https://github.com/kudos/passwo
 
 `npm install passwords`
 
-If you are running a non-harmony node.js, you'll need to install bluebird if you want `Promise`support, but it's not required and you can still just use callbacks.
+**Note** If you are running a non-harmony node.js, you'll need to install bluebird if you want `Promise` support, but it's not required and you can still just use callbacks.
 
 ## Usage
 
