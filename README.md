@@ -1,14 +1,10 @@
-# Passwords
+# Passwords [![Build Status](https://travis-ci.org/kudos/node-passwords.svg?branch=master)](https://travis-ci.org/kudos/node-passwords)
 
-Passwords is a standard and simple interface to cryptographic hashing for secure password storage.
+Passwords is a cryptographic library for simple password storage.
 
 It's compatible with node.js v0.8+ and io.js and transparently supports traditional callbacks, promises and generators (see installation). It uses the Javascript runtime's PBKDF2 implementation and has no external dependencies.
 
-There is a companion library [written in Python](/kudos/passwords) which is compatible with the PBKDF2 hashes produced by this library.
-
-## Why?
-
-This is an attempt to make it easier for developers to find and use a cryptographic library suitable for password storage.
+There is a companion library [written in Python](https://github.com/kudos/passwords) which is compatible with the PBKDF2 hashes produced by this library.
 
 ## Installation
 
@@ -18,14 +14,11 @@ If you are running a non-harmony node.js, you'll need to install bluebird if you
 
 ## Usage
 
-### Callbacks
-
-    passwords.crypt('password', function (err, hash) {
-      passwords.verify('password', hash, function (err, good) {
-        assert(good);
-      });
-    });
+### Generators
     
+    const hash = passwords.crypt('password');
+    assert(yield passwords.verify('password', hash));
+
 ### Promises
 
     return passwords.crypt('password').then(function (hash) {
@@ -34,7 +27,10 @@ If you are running a non-harmony node.js, you'll need to install bluebird if you
       assert(good);
     });
 
-### Generators
-    
-    const hash = passwords.crypt('password');
-    assert(yield passwords.verify('password', hash));
+### Callbacks
+
+    passwords.crypt('password', function (err, hash) {
+      passwords.verify('password', hash, function (err, good) {
+        assert(good);
+      });
+    });
