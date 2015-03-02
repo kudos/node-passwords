@@ -1,4 +1,4 @@
-# Passwords.js
+# Passwords.js [![Circle CI](https://circleci.com/gh/kudos/passwords.js.svg?style=svg) ](https://circleci.com/gh/kudos/passwords.js)
 
 Passwords.js is a standard and simple interface to cryptographic hashing for for secure password storage.
 
