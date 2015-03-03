@@ -1,8 +1,8 @@
-# Passwords [![Build Status](https://travis-ci.org/kudos/node-passwords.svg?branch=master)](https://travis-ci.org/kudos/node-passwords)
+# Passwords
 
-Passwords is a cryptographic library for simple password storage.
+[![Build Status](https://travis-ci.org/kudos/node-passwords.svg?branch=master)](https://travis-ci.org/kudos/node-passwords)
 
-It's compatible with node.js v0.8+ and io.js and transparently supports traditional callbacks, promises and generators (see installation). It uses the Javascript runtime's PBKDF2 implementation and has no external dependencies.
+Passwords is compatible with node.js v0.8+ and io.js and transparently supports traditional callbacks, promises and generators (see installation). It uses the Javascript runtime's PBKDF2 implementation and has no external dependencies.
 
 There is a companion library [written in Python](https://github.com/kudos/passwords) which is compatible with the PBKDF2 hashes produced by this library.
 
@@ -34,3 +34,13 @@ There is a companion library [written in Python](https://github.com/kudos/passwo
         assert(good);
       });
     });
+
+## API
+
+### passwords.crypt(password [,cost] [,callback])[.then(hash => )]
+
+If callback is omitted, returns a promise instead. Optional cost for increasing the computational difficulty of the hash.
+
+### passwords.verify(password, hash [,callback])[.then(verified => )]
+
+If callback is omitted, returns a promise instead.

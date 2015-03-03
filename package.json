@@ -1,7 +1,7 @@
 {
   "name": "passwords",
-  "description": "Passwords is standard and simple interface to cryptographic hashing for for secure password storage",
-  "version": "1.1.0",
+  "description": "Passwords is a cryptographic library for simple password storage.",
+  "version": "1.1.1",
   "author": {
     "name": "Jonathan Cremin",
     "email": "jonathan@crem.in",
