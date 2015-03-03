@@ -19,15 +19,17 @@ try {
   // ignore missing bluebird module, but try to catch people using Promises anyway.
   var Deferred = function() {
     var deferred = {};
-    deferred.promise = {then: function() {
-      throw new Error('Use callbacks, install bluebird or use a newer javascript runtime (io.js, node.js harmony) for promise support.');
-    }}
+    deferred.promise = {
+      then: function() {
+        throw new Error('Use callbacks, install bluebird or use a newer javascript runtime (io.js, node.js harmony) for promise support.');
+      }
+    };
     return deferred;
   };
 }
 
 
-exports.verify = function(password, hash, callback) {
+exports.match = function(password, hash, callback) {
   var hashParts = hash.split('$');
   var iterations = hashParts[2] * 500;
   var salt = hashParts[3];
@@ -52,8 +54,8 @@ exports.verify = function(password, hash, callback) {
   return !!callback || defer.promise;
 };
 
-
-exports.crypt = function(password, cost, callback) {
+// crypt is deprecated, use hash
+exports.hash = function(password, cost, callback) {
   if (typeof(cost) === 'function') {
     callback = cost;
     cost = 2;
@@ -99,3 +101,8 @@ exports.crypt = function(password, cost, callback) {
   });
   return !!callback || defer.promise;
 };
+
+// Deprecating crypt and verify in favour of the more obvious hash and match.
+// The next minor bump will output a notice when the old functions are used.
+exports.crypt = exports.hash;
+exports.verify = exports.match;

@@ -1,7 +1,7 @@
 {
   "name": "passwords",
   "description": "Passwords is a cryptographic library for simple password storage.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": {
     "name": "Jonathan Cremin",
     "email": "jonathan@crem.in",
@@ -16,8 +16,9 @@
     "promises",
     "bluebird",
     "yield",
-    "yieldable",
-    "generators"
+    "thenable",
+    "generators",
+    "ES6"
   ],
   "repository": "git://github.com/kudos/node-passwords",
   "bugs": "https://github.com/kudos/node-passwords/issues",
