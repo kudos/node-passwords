@@ -17,25 +17,31 @@ There is a companion library [written in Python](https://github.com/kudos/passwo
 ## Usage
 
 ### Generators
-    
-    const hash = yield passwords.hash('password');
-    assert(yield passwords.match('password', hash));
+
+```js
+const hash = yield passwords.hash('password');
+assert(yield passwords.match('password', hash));
+```
 
 ### Promises
 
-    return passwords.hash('password').then(function (hash) {
-      return passwords.match('password', hash);
-    }).then(function (matched) {
-      assert(matched);
-    });
+```js
+return passwords.hash('password').then(function (hash) {
+  return passwords.match('password', hash);
+}).then(function (matched) {
+  assert(matched);
+});
+```
 
 ### Callbacks
 
-    passwords.hash('password', function (err, hash) {
-      passwords.match('password', hash, function (err, matched) {
-        assert(matched);
-      });
-    });
+```js
+passwords.hash('password', function (err, hash) {
+passwords.match('password', hash, function (err, matched) {
+    assert(matched);
+  });
+});
+```
 
 ## API
 
