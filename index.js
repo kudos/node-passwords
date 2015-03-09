@@ -59,6 +59,8 @@ exports.hash = function(password, cost, callback) {
   if (typeof(cost) === 'function') {
     callback = cost;
     cost = 2;
+  } else {
+    cost = cost || 2;
   }
 
   var iterations = cost * 500;
