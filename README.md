@@ -55,6 +55,9 @@ If callback is omitted, returns a promise instead.
 
 ## Changes
 
+#### 1.3.0
+- The optional cost wasn't being handled correctly in `hash` when omitted and without a callback parameter.
+
 #### 1.2.0
 - Rename `crypt` to `hash` and `verify` to `match` to better reflect the library's purpose. The old function names are still available, but will be removed in the future.
 
