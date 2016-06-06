@@ -21,7 +21,7 @@ try {
     var deferred = {};
     deferred.promise = {
       then: function() {
-        throw new Error('Use callbacks, install bluebird or use a newer javascript runtime (io.js, node.js harmony) for promise support.');
+        throw new Error('Use callbacks, install bluebird or use a newer javascript runtime for promise support.');
       }
     };
     return deferred;
@@ -35,12 +35,12 @@ exports.match = function(password, hash, callback) {
   var salt = hashParts[3];
   var hashed_password = hashParts[4];
   var defer = new Deferred();
-  pbkdf2(password, salt, iterations, 24, function(err, derivedKey){
+  pbkdf2(password, salt, iterations, 24, 'sha1', function(err, derivedKey){
     if(err) {
       if (callback) {
         return callback(new Error(err));
       }
-      
+
       defer.reject(err);
     } else {
       var match = new Buffer(derivedKey, 'binary').toString('hex') == hashed_password;
@@ -75,7 +75,7 @@ exports.hash = function(password, cost, callback) {
       defer.reject(new Error(err));
     } else {
       try {
-        pbkdf2(password, buf.toString('base64'), iterations, 24, function(err, derivedKey){
+        pbkdf2(password, buf.toString('base64'), iterations, 24, 'sha1', function(err, derivedKey){
           if(err) {
             if (callback) {
               return callback(new Error(err));
@@ -83,12 +83,12 @@ exports.hash = function(password, cost, callback) {
 
             defer.reject(new Error(err));
           } else {
-            var hash = '$pbkdf2-256-1$' + cost + '$' + 
+            var hash = '$pbkdf2-256-1$' + cost + '$' +
               buf.toString('base64') + '$' + new Buffer(derivedKey, 'binary').toString('hex');
             if (callback) {
               return callback(null, hash);
             }
-            
+
             defer.resolve(hash);
           }
         });
